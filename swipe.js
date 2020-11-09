@@ -47,18 +47,22 @@ function setSwipe(elem) {
 		//スワイプ処理
 		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 			if (startX - moveX > dist) {		// 右から左にスワイプ
-				model_cal(3);
+				swipe_no=3;
+				model_cal(swipe_no);
 			}
 			else if (startX - moveX < -1 * dist) {	// 左から右にスワイプ
-				model_cal(1);
+				swipe_no=1;
+				model_cal(swipe_no);
 			}
 		}
 		else {
 			if (startY - moveY > dist) {//上から下にスワイプ
-				model_cal(2);
+				swipe_no=2;
+				model_cal(swipe_no);
 			}
 			else if (startY - moveY < -1 * dist) {//下から上にスワイプ
-				model_cal(0);
+				swipe_no=0;
+				model_cal(swipe_no);
 			}
 		}
 		setNumber();
@@ -70,8 +74,9 @@ function setSwipe(elem) {
  * 数値を画面に表示する
  */
 function setNumber() {
-	numberX.innerHTML = swipe_no;
-	numberY.innerHTML = mode_counter;
+	numberX.innerHTML = "swipe"+swipe_no;
+	numberY.innerHTML = "mode"+mode_counter;
+	numberZ.innerHTML=  "text"+show_text;
 }
 
 /*
@@ -81,11 +86,13 @@ window.addEventListener("load", function () {
 	// 数値表示部分のDOM取得
 	numberX = document.getElementById("numberX");
 	numberY = document.getElementById("numberY");
+	numberZ = document.getElementById("numberZ");
 
 	// 数値を画面に表示
 	mode_val = 0;
 	mode_counter = 0;
 	swipe_no = 0;
+	show_text="♡"
 	setNumber();
 
 	// スワイプイベント設定
