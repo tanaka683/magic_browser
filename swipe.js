@@ -1,4 +1,5 @@
 var mode_val;//モード格納用　0:ランダム，1:マーク，2:数字１，3:数字２
+var show_text;//出力するテキストリスト
 var no;				// 数値格納用
 var number;		// 数値表示部分のDOM取得用						
 
