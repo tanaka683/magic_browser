@@ -30,8 +30,8 @@ function setSwipe(elem) {
 	// タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
 	t.addEventListener("touchend", function (e) {
 
-numberX.innerHTML=startX;
-numberY.innerHTML=startY;
+numberX.innerHTML="X: "+startX;
+numberY.innerHTML="Y: "+startY;
 		// if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 		// 	if (startX - moveX > dist) {		// 右から左にスワイプ
 		// 		previous();
