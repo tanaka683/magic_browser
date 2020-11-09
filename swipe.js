@@ -72,6 +72,7 @@ function previous() {
  */
 function setNumber() {
 	numberX.innerHTML = no;
+	numberY.innerHTML=no;
 }
 
 /*
