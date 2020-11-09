@@ -1,5 +1,6 @@
 var mode_val;//モード格納用　0:ランダム，1:マーク，2:数字１，3:数字２
 var show_text;//出力するテキストリスト
+var mode_counter;
 var no;				// 数値格納用
 var number;		// 数値表示部分のDOM取得用						
 
@@ -13,7 +14,8 @@ function setSwipe(elem) {
 	let moveX;	// スワイプ中の x座標
 	let moveY;	// スワイプ中の y座標
 	let dist = 30;	// スワイプを感知する最低距離（ピクセル単位）
-
+	let mode_dist = 50;//モード切替をする範囲
+	let mode_C = 3;//mode_C回左上をタップするとモードチェンジ
 	// タッチ開始時： xy座標を取得
 	t.addEventListener("touchstart", function (e) {
 		e.preventDefault();
@@ -30,50 +32,42 @@ function setSwipe(elem) {
 
 	// タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
 	t.addEventListener("touchend", function (e) {
+		if (startX < mode_dist && moveX < mode_dist 
+			&& startY < mode_dist && moveY < mode_dist) {
+			mode_counter++;
+		} 
+		else { mode_counter = 0;}
 
-numberX.innerHTML="X: "+startX;
-numberY.innerHTML="Y: "+startY;
-		// if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
-		// 	if (startX - moveX > dist) {		// 右から左にスワイプ
-		// 		previous();
-		// 	}
-		// 	else if (startX - moveX < -1 * dist) {	// 左から右にスワイプ
-		// 		next();
-		// 	}
-		// }
-		// else {
-		// 	if (startY - moveY > dist) {//上から下にスワイプ
-
-		// 	}
-		// 	else if (startY - moveY < -1 * dist) {//下から上にスワイプ
-
-		// 	}
-		// }
+		if (mode_counter >= mode_C&&mode_val==0) {mode_val=1;}
+		
+		numberX.innerHTML = "X: " + startX;
+		numberY.innerHTML = "Y: " + startY;
+		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
+			if (startX - moveX > dist) {		// 右から左にスワイプ
+				no=3;
+			}
+			else if (startX - moveX < -1 * dist) {	// 左から右にスワイプ
+				no=1;
+			}
+		}
+		else {
+			if (startY - moveY > dist) {//上から下にスワイプ
+				no=2;
+			}
+			else if (startY - moveY < -1 * dist) {//下から上にスワイプ
+				no=0;
+			}
+		}
 	});
 }
 
-/*
- * 次の番号を表示
- */
-function next() {
-	no++;
-	setNumber();
-}
-
-/*
- * 前の番号を表示
- */
-function previous() {
-	no--;
-	setNumber();
-}
 
 /*
  * 数値を画面に表示する
  */
 function setNumber() {
 	numberX.innerHTML = no;
-	numberY.innerHTML=no;
+	numberY.innerHTML = mode_counter;
 }
 
 /*
@@ -86,6 +80,7 @@ window.addEventListener("load", function () {
 
 	// 数値を画面に表示
 	mode_val = 0;
+	mode_counter = 0;
 	no = 0;
 	setNumber();
 
