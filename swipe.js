@@ -32,32 +32,34 @@ function setSwipe(elem) {
 
 	// タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
 	t.addEventListener("touchend", function (e) {
-		if (startX < mode_dist && moveX < mode_dist 
+		if (startX < mode_dist && moveX < mode_dist
 			&& startY < mode_dist && moveY < mode_dist) {
 			mode_counter++;
-		} 
-		else { mode_counter = 0;}
+		}
+		else { mode_counter = 0; }
 
-		if (mode_counter >= mode_C&&mode_val==0) {mode_val=1;}
-		
+		if (mode_counter >= mode_C && mode_val == 0) { mode_val = 1; }
+
 		numberX.innerHTML = "X: " + startX;
 		numberY.innerHTML = "Y: " + startY;
 		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 			if (startX - moveX > dist) {		// 右から左にスワイプ
-				no=3;
+				no = 3;
 			}
 			else if (startX - moveX < -1 * dist) {	// 左から右にスワイプ
-				no=1;
+				no = 1;
 			}
 		}
 		else {
 			if (startY - moveY > dist) {//上から下にスワイプ
-				no=2;
+				no = 2;
 			}
 			else if (startY - moveY < -1 * dist) {//下から上にスワイプ
-				no=0;
+				no = 0;
 			}
 		}
+		model_cal(no);
+		setNumber();
 	});
 }
 
