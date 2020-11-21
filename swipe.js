@@ -3,7 +3,8 @@ var show_text;//出力するテキストリスト
 var mode_cnt;
 var swipe_no;				// 数値格納用
 var numberX;		// 数値表示部分のDOM取得用						
-var numberY;		// 数値表示部分のDOM取得用						
+var numberY;		// 数値表示部分のDOM取得用					
+var swipe_dir;	
 
 /*
  * スワイプイベント設定
@@ -15,7 +16,7 @@ function setSwipe(elem) {
 	let moveX;	// スワイプ中の x座標
 	let moveY;	// スワイプ中の y座標
 	const MIN_DIST = 30;	// スワイプを感知する最低距離（ピクセル単位）
-	const MODE_MIN_DIST = 50;//モード切替をする範囲
+	const CHMOD_RANGE = 50;//モード切替をする範囲
 	const CHMOD_THRESH = 3;//mode_C回左上をタップするとモードチェンジ
 	// タッチ開始時： xy座標を取得
 	t.addEventListener("touchstart", function (e) {
@@ -34,8 +35,8 @@ function setSwipe(elem) {
 	// タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
 	t.addEventListener("touchend", function (e) {
 		//左上をタップした回数をカウント
-		if (startX < MODE_MIN_DIST && moveX < MODE_MIN_DIST
-			&& startY < MODE_MIN_DIST && moveY < MODE_MIN_DIST) {
+		if (startX < CHMOD_RANGE && moveX < CHMOD_RANGE
+			&& startY < CHMOD_RANGE && moveY < CHMOD_RANGE) {
 			mode_cnt++;
 		}
 		else { mode_cnt = 0; }
@@ -47,21 +48,25 @@ function setSwipe(elem) {
 		//スワイプ処理
 		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 			if (startX - moveX > MIN_DIST) {		// 右から左にスワイプ
-				swipe_no=3;
+				// swipe_no=3;
+				swipe_no='♤';
 				model_cal(swipe_no);
 			}
 			else if (startX - moveX < -1 * MIN_DIST) {	// 左から右にスワイプ
-				swipe_no=1;
+				// swipe_no=1;
+				swipe_no='♡';
 				model_cal(swipe_no);
 			}
 		}
 		else {
 			if (startY - moveY > MIN_DIST) {//上から下にスワイプ
-				swipe_no=2;
+				// swipe_no=2;
+				swipe_no = '♢';
 				model_cal(swipe_no);
 			}
 			else if (startY - moveY < -1 * MIN_DIST) {//下から上にスワイプ
-				swipe_no=0;
+				// swipe_no=0;
+				swipe_no = '♧';
 				model_cal(swipe_no);
 			}
 		}
