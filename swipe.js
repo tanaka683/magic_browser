@@ -1,11 +1,13 @@
 var mode_val;//モード格納用　0:ランダム，1:マーク，2:数字１，3:数字２
 var show_text;//出力するテキストリスト
 var mode_cnt;
-var swipe_no;				// 数値格納用
+// var swipe_no;				// 数値格納用
 var numberX;		// 数値表示部分のDOM取得用						
 var numberY;		// 数値表示部分のDOM取得用					
-var swipe_dir;	
-
+var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
+// var SUIT = { SPADE: 0, HEART: 1, DIA: 2, CLOVER: 3};//♤  ♡  ♢   ♧
+var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
+var swipe_dir;
 /*
  * スワイプイベント設定
  */
@@ -49,25 +51,29 @@ function setSwipe(elem) {
 		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 			if (startX - moveX > MIN_DIST) {		// 右から左にスワイプ
 				// swipe_no=3;
-				swipe_no='♤';
-				model_cal(swipe_no);
+				// swipe_no='♢';
+				swipe_dir = SWIPE_DIR.LEFT;
+				model_cal(swipe_dir);
 			}
 			else if (startX - moveX < -1 * MIN_DIST) {	// 左から右にスワイプ
 				// swipe_no=1;
-				swipe_no='♡';
-				model_cal(swipe_no);
+				// swipe_no='♤';
+				swipe_dir = SWIPE_DIR.RIGHT;
+				model_cal(swipe_dir);
 			}
 		}
 		else {
 			if (startY - moveY > MIN_DIST) {//上から下にスワイプ
 				// swipe_no=2;
-				swipe_no = '♢';
-				model_cal(swipe_no);
+				// swipe_no = '♡';
+				swipe_dir = SWIPE_DIR.DOWN
+				model_cal(swipe_dir);
 			}
 			else if (startY - moveY < -1 * MIN_DIST) {//下から上にスワイプ
 				// swipe_no=0;
-				swipe_no = '♧';
-				model_cal(swipe_no);
+				// swipe_no = '♧';
+				swipe_dir = SWIPE_DIR.UP
+				model_cal(swipe_dir);
 			}
 		}
 		setNumber();
