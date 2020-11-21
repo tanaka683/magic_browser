@@ -4,7 +4,7 @@ var mode_counter;
 var swipe_no;				// 数値格納用
 var numberX;		// 数値表示部分のDOM取得用						
 var numberY;		// 数値表示部分のDOM取得用						
-
+let print_list;
 /*
  * スワイプイベント設定
  */
@@ -77,6 +77,8 @@ function setNumber() {
 	numberX.innerHTML = "swipe"+swipe_no;
 	numberY.innerHTML = "mode"+mode_counter;
 	numberZ.innerHTML=  "text"+show_text;
+	print_list.innerHTML = "1:";
+
 }
 
 /*
@@ -87,6 +89,7 @@ window.addEventListener("load", function () {
 	numberX = document.getElementById("numberX");
 	numberY = document.getElementById("numberY");
 	numberZ = document.getElementById("numberZ");
+	print_list.innerHTML = document.getElementById("print_list")
 
 	// 数値を画面に表示
 	mode_val = 0;
