@@ -1,7 +1,9 @@
 
+var ans = [-1, -1, -1];// [0]:SUIT,  [1][2]: 00~11までで 0 ~ 15を表す
 
-function card_cal(){
-	var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
+function card_cal(mode_val){
+    var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
+    var show_text = "";//出力するテキストリスト
 	if(mode_val == 1) ans[0] = swipe_dir;
 	else if(mode_val == 2) ans[1] = swipe_dir;
 	else if(mode_val == 3){
@@ -9,14 +11,16 @@ function card_cal(){
 	  var num = ans[1] * 4 + ans[2] * 1;
 	  show_text = SUIT[ans[0]];
 	  show_text += num;
-	  printZ = " ans: " + ans;
-      printZ += "  じゃああああん";
+    //   printZ = " ans: " + ans;
+    printZ = show_text;
+      printZ += "  </br>じゃああああん";
       setPrint();
 	  return;
 	}
-    printZ = " ans: " + ans;
-    setPrint();
+
 	show_text = SUIT[Math.floor(Math.random() * 4)];// SUIT[0~3]
 	show_text += Math.floor(Math.random() * 13) + 1;// 0~12  + 1 toStringじゃなくて良いらしい(てかtoStringだとエラー出た)
-	
+    // printZ = " ans: " + ans;
+    printZ = show_text;
+    setPrint();
   }

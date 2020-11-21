@@ -1,10 +1,15 @@
 
 
+var tap_cnt = 0;// 連続タップ回数
+var mode_val = -1;//モード格納用　0:ランダム，1:マーク，2:数字１，3:数字２
+
 function swipe_cal(startX, startY, endX, endY){
 	const MIN_DIST = 30;	// スワイプを感知する最低距離（ピクセル単位）
 	// const CHMOD_RANGE = 70;//モード切替をする範囲
 	const CHMOD_THRESH = 3;//CHMOD_THRESH回左上をタップするとモードチェンジ
 	var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
+	
+	
 	// スワイプorタップ判定
 	if(Math.abs(startX - endX) < MIN_DIST){
 		if(Math.abs(startY - endY) < MIN_DIST){
@@ -12,7 +17,7 @@ function swipe_cal(startX, startY, endX, endY){
 			if (tap_cnt >= CHMOD_THRESH){ mode_val = 1;}
 			
 			printY = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
-			printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+			printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
 			setPrint()
 			return;//タップの場合は終了
 		}
@@ -31,11 +36,11 @@ function swipe_cal(startX, startY, endX, endY){
 		else if (endY - startY < 0) {swipe_dir = SWIPE_DIR.UP}//下から上にスワイプ
 	}
 
-	card_cal();
+	card_cal(mode_val);
 	if(mode_val > 0) mode_val = (mode_val+1) % 5;
 	
 	printY = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
-	printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+	printX = " mode_val: "+mode_val + " tap_cnt: " ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
 	setPrint();
-	
+
 }
