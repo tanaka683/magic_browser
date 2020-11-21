@@ -89,7 +89,7 @@ function setNumber() {
 	// numberX.innerHTML = "swipe"+swipe_no;
 	// numberY.innerHTML = "mode"+mode_cnt;
 	// numberZ.innerHTML =  "text"+show_text;
-	numberX.innerHTML = " swipe_no: "+swipe_no + " mode_cnt: " + mode_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " moveX: " + moveX + " moveY: " + moveY;
+	numberX.innerHTML = " 1swipe_no: "+swipe_no + " mode_cnt: " + mode_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " moveX: " + moveX + " moveY: " + moveY;
 	
 }
 
