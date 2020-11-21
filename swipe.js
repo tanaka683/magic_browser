@@ -1,6 +1,6 @@
 var mode_val;//モード格納用　0:ランダム，1:マーク，2:数字１，3:数字２
 var show_text;//出力するテキストリスト
-var CHMOD_THRESHounter;
+var mode_cnt;
 var swipe_no;				// 数値格納用
 var numberX;		// 数値表示部分のDOM取得用						
 var numberY;		// 数値表示部分のDOM取得用						
@@ -15,8 +15,8 @@ function setSwipe(elem) {
 	let moveX;	// スワイプ中の x座標
 	let moveY;	// スワイプ中の y座標
 	const MIN_DIST = 30;	// スワイプを感知する最低距離（ピクセル単位）
-	const CHMOD_RANGE = 50;//モード切替をする範囲
-	const CHMOD_THRESH = 3;//CHMOD_THRESH回左上をタップするとモードチェンジ
+	const MODE_MIN_DIST = 50;//モード切替をする範囲
+	const CHMOD_THRESH = 3;//mode_C回左上をタップするとモードチェンジ
 	// タッチ開始時： xy座標を取得
 	t.addEventListener("touchstart", function (e) {
 		e.preventDefault();
@@ -34,13 +34,13 @@ function setSwipe(elem) {
 	// タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
 	t.addEventListener("touchend", function (e) {
 		//左上をタップした回数をカウント
-		if (startX < CHMOD_RANGE && moveX < CHMOD_RANGE
-			&& startY < CHMOD_RANGE && moveY < CHMOD_RANGE) {
-			CHMOD_THRESHounter++;
+		if (startX < MODE_MIN_DIST && moveX < MODE_MIN_DIST
+			&& startY < MODE_MIN_DIST && moveY < MODE_MIN_DIST) {
+			mode_cnt++;
 		}
-		else { CHMOD_THRESHounter = 0; }
-		//左上タップ回数がCHMOD_THRESH以上ならmodeチェンジ
-		if (CHMOD_THRESHounter >= CHMOD_THRESH && mode_val == 0) { mode_val = 1; }
+		else { mode_cnt = 0; }
+		//左上タップ回数がmode_C以上ならmodeチェンジ
+		if (mode_cnt >= CHMOD_THRESH && mode_val == 0) { mode_val = 1; }
 
 		// numberX.innerHTML = "X: " + startX;
 		// numberY.innerHTML = "Y: " + startY;
@@ -76,9 +76,9 @@ function setSwipe(elem) {
  */
 function setNumber() {
 	// numberX.innerHTML = "swipe"+swipe_no;
-	// numberY.innerHTML = "mode"+CHMOD_THRESHounter;
+	// numberY.innerHTML = "mode"+mode_cnt;
 	// numberZ.innerHTML =  "text"+show_text;
-	numberX.innerHTML = " swipe_no: "+swipe_no + " CHMOD_THRESHounter: " + CHMOD_THRESHounter + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " moveX: " + moveX + " moveY: " + moveY;
+	numberX.innerHTML = " swipe_no: "+swipe_no + " mode_cnt: " + mode_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " moveX: " + moveX + " moveY: " + moveY;
 	
 }
 
@@ -93,7 +93,7 @@ window.addEventListener("load", function () {
 
 	// 数値を画面に表示
 	mode_val = 0;
-	CHMOD_THRESHounter = 0;
+	mode_cnt = 0;
 	swipe_no = 0;
 	show_text="♡"
 	setNumber();
