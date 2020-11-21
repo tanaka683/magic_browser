@@ -9,6 +9,6 @@ function model_cal(swipe_dir){//引数はスート(マーク)
   // if(mode_val==1){
   //     if(swipe_num==0){show_text="♠"}
   // }
-  show_text = SUIT[swipe_dir]
+  show_text = SUIT[swipe_dir];
 
 }
