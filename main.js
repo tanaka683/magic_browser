@@ -3,9 +3,10 @@ var ans = [-1, -1, -1];// [0]:SUIT,  [1][2]: 00~11までで 0 ~ 15を表す
 var show_text = "";//出力するテキストリスト
 var tap_cnt = 0;// 連続タップ回数
 
-var numberX, numberY;		// 数値表示部分のDOM取得用					
-var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
-var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
+var numberX, numberY, numberZ;		// 数値表示部分のDOM取得用			
+var printX, printY, printZ;			
+// var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
+// var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
 var swipe_dir = -1;
 
   
@@ -44,7 +45,10 @@ function setSwipe(elem) {
 /*
  * 数値を画面に表示する
  */
-function setNumber() {//numberX.innerHTML = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+function setPrint() {
+	numberX.innerHTML = printX;
+	numberY.innerHTML = printY;
+	numberZ.innerHTML = printZ;
 }
 
 /*
@@ -57,8 +61,8 @@ window.addEventListener("load", function () {
 	numberZ = document.getElementById("numberZ");
 
 	// 数値を画面に表示
-	numberX.innerHTML = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
-
+	printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+	setPrint()
 
 	// スワイプイベント設定
 	setSwipe("#contents");

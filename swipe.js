@@ -4,15 +4,16 @@ function swipe_cal(startX, startY, endX, endY){
 	const MIN_DIST = 30;	// スワイプを感知する最低距離（ピクセル単位）
 	// const CHMOD_RANGE = 70;//モード切替をする範囲
 	const CHMOD_THRESH = 3;//CHMOD_THRESH回左上をタップするとモードチェンジ
-
+	var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
 	// スワイプorタップ判定
 	if(Math.abs(startX - endX) < MIN_DIST){
 		if(Math.abs(startY - endY) < MIN_DIST){
 			tap_cnt++;//連続タップ回数
 			if (tap_cnt >= CHMOD_THRESH){ mode_val = 1;}
 			
-			numberY.innerHTML = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
-			numberX.innerHTML = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+			printY = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
+			printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+			setPrint()
 			return;//タップの場合は終了
 		}
 	}
@@ -33,7 +34,8 @@ function swipe_cal(startX, startY, endX, endY){
 	card_cal();
 	if(mode_val > 0) mode_val = (mode_val+1) % 5;
 	
-	numberY.innerHTML = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
-	numberX.innerHTML = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
-
+	printY = " startX: " + startX.toFixed(2) + "      startY: " + startY.toFixed(2) + "</br> endX: " + endX.toFixed(2) + "         endY: " + endY.toFixed(2);
+	printX = " mode_val: "+mode_val + " tap_cnt: " + tap_cnt + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " endX: " + endX + " endY: " + endY;
+	setPrint();
+	
 }
