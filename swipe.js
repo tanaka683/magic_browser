@@ -67,6 +67,7 @@ function setSwipe(elem) {
 		}
 		setNumber();
 	});
+	numberY.innerHTML = " startX: " + startX + "      startY: " + startY + "</br> moveX: " + moveX + "         moveY: " + moveY;
 }
 
 
@@ -74,9 +75,11 @@ function setSwipe(elem) {
  * 数値を画面に表示する
  */
 function setNumber() {
-	numberX.innerHTML = "swipe"+swipe_no;
-	numberY.innerHTML = "mode"+mode_counter;
-	numberZ.innerHTML=  "text"+show_text;
+	// numberX.innerHTML = "swipe"+swipe_no;
+	// numberY.innerHTML = "mode"+mode_counter;
+	// numberZ.innerHTML =  "text"+show_text;
+	numberX.innerHTML = " swipe_no: "+swipe_no + " mode_counter: " + mode_counter + " show_text: " + show_text ;//+ " startX: " + startX + " startY: " + startY + " moveX: " + moveX + " moveY: " + moveY;
+	
 }
 
 /*
