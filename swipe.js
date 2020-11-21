@@ -47,7 +47,7 @@ function setSwipe(elem) {
 		//スワイプ処理
 		if (Math.abs(startX - moveX) >= Math.abs(startY - moveY)) {
 			if (startX - moveX > dist) {		// 右から左にスワイプ
-				swipe_no=3;
+				swipe_no=1;
 				model_cal(swipe_no);
 			}
 			else if (startX - moveX < -1 * dist) {	// 左から右にスワイプ
