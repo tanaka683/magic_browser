@@ -24,4 +24,4 @@ function card_cal(mode_val){
     // printZ = " ans: " + ans;
     printZ = show_text;
     setPrint();
-  }
+}
