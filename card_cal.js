@@ -1,7 +1,7 @@
 
-var ans = [-1, -1, -1];// [0]:SUIT,  [1][2]: 00~11までで 0 ~ 15を表す
+var ans = [-1, -1, -1];// [0]:SUIT,  [1][2]: 00~11までで 0 ~ 15を表す//static変数があればローカルにできるのに...
 
-function card_cal(mode_val){
+function card_cal(mode_val, swipe_dir){
     var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
 	var show_text = "";//出力するテキストリスト
 	if(mode_val == 3){

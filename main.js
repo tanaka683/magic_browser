@@ -1,7 +1,7 @@
 
 var numberX, numberY, numberZ;		// 数値表示部分のDOM取得用			
 var printX = "", printY = "", printZ = "♤1";
-var swipe_dir = -1;
+
 // var SWIPE_DIR = {RIGHT: 0, DOWN: 1, LEFT: 2, UP: 3};//→ ↓ ← ↑
 // var SUIT = { 0: '♤' , 1:'♡' , 2: '♢', 3: '♧'};//♤  ♡  ♢   ♧
 
